@@ -1,15 +1,18 @@
 import os
 import discord
 import pandas
-import openpyxl       as xlReader
-import modules.exfunc as modules
+import openpyxl         as xlReader
+import modules.exWorker as exHandle
 
-xlsx = xlReader.load_workbook('./asda.xlsx')
+worker = exHandle.exWorker('asda.xlsx')
+# print(worker.exists('БСБО-09-17'))
 
-mainSheet = xlsx.get_sheet_by_name('Лист1')
-data = list(mainSheet.values)
+# for elem in worker.mainSheet['CD2:CG15']:
+#     for el in elem:
+#         if el.value is not None:
+#             print(el.value)
+#     print('----')
 
-print(modules.exists(data, 'БСБО-09-17'))
+print(worker.Exists('БСБО-09-17'))
 
-# data.index('БСБО-09-17 09.03.02(КБ-3)')
-# AW3
+
