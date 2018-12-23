@@ -28,7 +28,6 @@ class exWorker:
     coordinates = tuple()
 
     workDays = []
-
     days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
 
     def __init__(self, exFile):
@@ -41,18 +40,20 @@ class exWorker:
         for iRow in range(len(self.data)):
             for jCol in range(len(self.data[iRow])):
                 if(str(self.data[iRow][jCol]).startswith(group)):
+
                     self.curGroup = group
                     self.coordinates = iRow, jCol, self.CoordToKey(jCol, iRow)
 
                     return True
-
         return False
 
     def CoordToKey(self, jIndex, iIndex):
         if jIndex >= C_EN_ALPHABET_CAP:
+           
             remain = jIndex // C_EN_ALPHABET_CAP
             first = chr(C_ASCII_A_KEY - 1 + remain)
             second = chr(C_ASCII_A_KEY + jIndex - remain * C_EN_ALPHABET_CAP)
+            
             return str(first) + str(second) + str(iIndex + 1)
 
         else:
@@ -87,7 +88,7 @@ class exWorker:
             print(self.days[dayIndex] + ':')
 
             for subj in self.workDays[dayIndex].subjects:
-                if str(subj).replace(' ', '') != '':
+                if not str(subj).isspace():
                     print(str(subj).replace('\n', ''))
 
             print('------------------------------------')
