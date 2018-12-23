@@ -27,7 +27,6 @@ class exWorker:
 
     coordinates = tuple()
 
-    weekData = []
     workDays = []
 
     days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
@@ -68,8 +67,6 @@ class exWorker:
                                         self.CoordToKey(self.coordinates[1] + 3, self.coordinates[0] + C_EXCEL_WEEK_LEN)]:
             sRow = ''
             for elem in row:
-                self.weekData.append(elem.value)
-
                 if elem.value is None:
                     sRow += str(' ')
                 else:
@@ -92,6 +89,6 @@ class exWorker:
             for subj in self.workDays[dayIndex].subjects:
                 if str(subj).replace(' ', '') != '':
                     print(str(subj).replace('\n', ''))
-                    
+
             print('------------------------------------')
         
