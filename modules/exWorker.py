@@ -2,6 +2,8 @@ import os
 import pandas
 import openpyxl as xlReader
 import math
+import re
+import requests
 
 C_EN_ALPHABET_CAP = 26
 C_ASCII_A_KEY = 65
@@ -15,10 +17,12 @@ class workDay:
         self.subjects = rowsArr.copy()
 
     def GetEven(self):
-        [print(self.subjects[i]) for i in range(0, len(self.subjects), 2)]
+        [print(str(i // 2 + 1) + ' пара: ' + str(self.subjects[i]).replace('\n', ''))
+            for i in range(0, len(self.subjects), 2) if not str(self.subjects[i]).isspace()]
 
     def GetOdd(self):
-        [print(self.subjects[i]) for i in range(1, len(self.subjects), 2)]
+        [print(str(i // 2 + 1) + ' пара: ' + str(self.subjects[i]).replace('\n', ''))
+            for i in range(1, len(self.subjects), 2) if not str(self.subjects[i]).isspace()]
 
 
 class exWorker:
@@ -28,7 +32,7 @@ class exWorker:
     coordinates = tuple()
 
     workDays = []
-    days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота']
+    days = ['понедельник', 'пторник', 'среда', 'четверг', 'пятница', 'суббота']
 
     def __init__(self, exFile):
         self.exFile = exFile
@@ -84,12 +88,32 @@ class exWorker:
 
     
     def GetWeek(self):
+        curWeek = self.GetWeekNumber() % 2
+
         for dayIndex in range(len(self.workDays)):
             print(self.days[dayIndex] + ':')
 
-            for subj in self.workDays[dayIndex].subjects:
-                if not str(subj).isspace():
-                    print(str(subj).replace('\n', ''))
+            for i in range((0  if curWeek == 0 else 1), len(self.workDays[dayIndex].subjects), 2):
+                if not str(self.workDays[dayIndex].subjects[i]).isspace():
+                    print(str((i + 1) // 2 + (1 if curWeek == 0 else 0)) + ' пара: ' + 
+                        str(self.workDays[dayIndex].subjects[i]).replace('\n', ''))
 
             print('------------------------------------')
-        
+    
+    def GetDay(self, day):
+        for i in range(len(self.workDays)):
+            if self.days[i] == str(day).lower():
+                self.workDays[i].GetEven() if self.GetWeekNumber() != 0 else self.workDays[i].GetOdd() # Don`t Touch
+
+                return True
+                
+        print('Пары не найдены')
+        return False
+
+    def GetWeekNumber(self):
+        response = requests.get('https://www.mirea.ru/').text
+
+        try:
+            return int(re.search(r'<div class=\"date_text uk-display-inline-block\">\n.*?идет (\d{1,2})-я неделя.*?<\/div>', response).group(1))
+        except:
+            return -1

@@ -10,5 +10,5 @@ worker.Exists('БСБО-09-17')
 worker.SetWeek()
 
 # worker.days[2].GetEven()
-worker.GetWeek()
+worker.GetDay('ухйня')
 
