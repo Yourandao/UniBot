@@ -9,6 +9,6 @@
 7. Music resuming                             | DONE
 8. Music stopping                             | DONE
 9. Players container                          | DONE
-10. Music queue
+10. Music queue                               | DONE (MODIFY)
 11. Yandex-Music Broadcast
 12. Other music services broadcasting
