@@ -6,9 +6,20 @@ class YTDLWorker:
     players = {}
     queues  = {}
 
+    #-------------------------------
+
     def __init__(self, dClient):
         self.dClient = dClient
     
+    def checkQueue(self, serverID):
+        if self.queues[serverID] != []:
+            player = self.queues[serverID].pop(0)
+            self.players[serverID] = player
+            
+            player.start()
+
+    #-------------------------------
+
     @commands.command(pass_context = True)
     async def join(self, request):
         channel = request.message.author.voice.voice_channel
@@ -69,13 +80,8 @@ class YTDLWorker:
             self.queues[server.id] = [player]
 
         await self.dClient.say('Video queued')
-
-    def checkQueue(self, serverID):
-        if self.queues[serverID] != []:
-            player = self.queues[serverID].pop(0)
-            self.players[serverID] = player
-            
-            player.start()
+    
+    #-------------------------------    
 
 def setup(dClient):
     dClient.add_cog(YTDLWorker(dClient))

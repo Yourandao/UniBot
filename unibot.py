@@ -1,14 +1,8 @@
 import os
-
-import pandas
-import asyncio
 import discord
-import openpyxl         as xlReader
-import modules.exWorker as exHandle
-
 from discord.ext import commands
 
-dClient = commands.Bot(command_prefix = '$')
+dClient = commands.Bot(command_prefix = '.')
 
 extensions = ['modules.sheduler', 'modules.ytdlWorker']
 

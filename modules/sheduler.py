@@ -7,6 +7,8 @@ from discord.ext    import commands
 
 class Sheduler:
     memberList = {}
+    
+    #-------------------------------
 
     def __init__(self, dClient):
         self.dClient = dClient
@@ -22,6 +24,8 @@ class Sheduler:
         with open(os.path.join(os.path.dirname(__file__), '..', 'data', 'users.json'), 'w') as jFile:
             json.dump(self.memberList, jFile, indent = 4)
     
+    #-------------------------------
+
     @commands.command(pass_context = True)
     async def setGroup(self, request, group : str):
         if re.match(r'\b[А-Я]{4}\b-\d{2}-\d{2}', group):
@@ -87,6 +91,8 @@ class Sheduler:
     async def wnumber(self, request):
         weekNumber = self.xWorker.GetWeekNumber()
         await self.dClient.send_message(request.message.channel, weekNumber if weekNumber != -1 else 'Error' )
+
+    #-------------------------------
 
 def setup(dClient):
     dClient.add_cog(Sheduler(dClient))
