@@ -12,13 +12,14 @@
 8.  Music stopping                             | DONE
 9.  Players container                          | DONE
 10. Music queue                                | DONE (MODIFY)
-11. Add json for every user group
-12. Add a register system in sheduling
+11. Add json for every user group              | DONE
+12. Add a register system in sheduling         | DONE
 13. Add a cogs for discord modules
     a. YTDL                                    | DONE
     b. SHEDULER
+14. Create a methods based on exWorker functions
 
+#ADDITIONAL OBJECTIVES
 
-###ADDITIONAL OBJECTIVES###
 ♪ Yandex-Music Broadcast
 ♪ Other music services broadcasting
