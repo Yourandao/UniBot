@@ -7,12 +7,16 @@ import pandas
 import openpyxl as xlReader
 import requests
 
-C_EN_ALPHABET_CAP = 26
+#----------------------------------
+
+C_EN_ALPHABET_CAP = 26 
 C_ASCII_A_KEY = 65
 C_EXCEL_WEEK_LEN = 73
 C_DAY_SUBJS = 12
 
 A_WEEK_DAYS = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота']
+
+#----------------------------------
 
 class WorkDay:
     subjects = []
@@ -21,6 +25,7 @@ class WorkDay:
         self.subjects = rowsArr.copy()
         self.dayIndex = dayIndex
 
+    #Get a even day shedule which one is nonspace string
     def GetEven(self):
         rString = '\n, '
 
@@ -29,6 +34,7 @@ class WorkDay:
                 for i in range(0, len(self.subjects), 2) if not str(self.subjects[i]).isspace()]
             ).replace(',' , '').replace('*', ' ')
 
+    #Get a odd day shedule which one is nonspace string
     def GetOdd(self):
         rString = '\n, '
 
@@ -132,8 +138,8 @@ class ExWorker:
         curDay = datetime.datetime.today().weekday()
         nextDay = (curDay + 1) % len(self.workDays)
 
-        if nextDay + 1 == 6:
-            return A_WEEK_DAYS[nextDay] + ':\n' + self.workDays[nextDay].GetEven() if self.GetWeekNumber() % 2 != 0 else self.workDays[nextDay].GetOdd()
+        if nextDay + 1 != 6:
+            return self.workDays[nextDay].GetEven() if self.GetWeekNumber() % 2 != 0 else self.workDays[nextDay].GetOdd()
         else:
             return 'Пары не найдены'
 
@@ -143,13 +149,13 @@ class ExWorker:
         if curDay == 0:
             curDay = 6
         
-        return A_WEEK_DAYS[curDay - 1] + ':\n' + self.workDays[curDay - 1].GetEven() if self.GetWeekNumber() % 2 != 0 else self.workDays[curDay - 1].GetOdd()
+        return self.workDays[curDay - 1].GetEven() if self.GetWeekNumber() % 2 != 0 else self.workDays[curDay - 1].GetOdd()
 
     def GetToday(self):
         curDay = datetime.datetime.today().weekday()
 
         if curDay != 6:
-            return A_WEEK_DAYS[curDay] + ':\n' + self.workDays[curDay].GetEven() if self.GetWeekNumber() % 2 != 0 else self.workDays[curDay].GetOdd()
+            return self.workDays[curDay].GetEven() if self.GetWeekNumber() % 2 != 0 else self.workDays[curDay].GetOdd()
         else:
             return 'Пары не найдены'
 

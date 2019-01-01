@@ -14,9 +14,6 @@ extensions = ['modules.sheduler', 'modules.ytdlWorker']
 
 #-----------------------------------
 
-players = {}
-queues   = {}
-
 @dClient.event
 async def on_ready():
     print('Logged in as ' + dClient.user.name + ' ' + dClient.user.id)    

@@ -64,7 +64,7 @@ class YTDLWorker:
         player = await voiceClient.create_ytdl_player(url, after = lambda: self.checkQueue(server.id))
 
         if server.id in self.queues:
-            self.queues[server.id].appen(player)
+            self.queues[server.id].append(player)
         else:
             self.queues[server.id] = [player]
 
