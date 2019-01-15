@@ -17,6 +17,13 @@
 13. Add a cogs for discord modules                  | DONE
 14. Create a methods based on exWorker functions    | DONE
 15. Create regex to group input                     | DONE
+16. Add descriptions to help menu                   | DONE
+17. Add status                                      | DONE
+18. Skip function
+19. Now playing and suggested modules               | DONE
+20. Trimming strings in shedule                     | DONE
+21. Automize work with shedule files
+22. Add embeds to messages                          | DONE
 
 #ADDITIONAL OBJECTIVES
 

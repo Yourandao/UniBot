@@ -27,21 +27,21 @@ class WorkDay:
 
     #Get a even day shedule which one is nonspace string
     def GetEven(self):
-        rString = '\n, '
+        rString = '\n'
 
         return A_WEEK_DAYS[self.dayIndex] + ':\n' + rString.join(
             [str(i // 2 + 1) + ' пара: ' + str(self.subjects[i]).replace('\n', '')
                 for i in range(0, len(self.subjects), 2) if not str(self.subjects[i]).isspace()]
-            ).replace(',' , '').replace('*', ' ')
+            ).replace('*', ' ')
 
     #Get a odd day shedule which one is nonspace string
     def GetOdd(self):
-        rString = '\n, '
+        rString = '\n'
 
         return A_WEEK_DAYS[self.dayIndex] + ':\n' + rString.join(
             [str(i // 2 + 1) + ' пара: ' + str(self.subjects[i]).replace('\n', '')
                 for i in range(1, len(self.subjects), 2) if not str(self.subjects[i]).isspace()]
-            ).replace(',', '').replace('*', ' ')
+            ).replace('*', ' ')
 
 
 class ExWorker:

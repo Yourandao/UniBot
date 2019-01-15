@@ -10,8 +10,9 @@ extensions = ['modules.sheduler', 'modules.ytdlWorker']
 
 @dClient.event
 async def on_ready():
-    print('Logged in as ' + dClient.user.name + ' ' + dClient.user.id)    
-
+    await dClient.change_presence(game = discord.Game(name = 'ass'))
+    print('Logged in as ' + dClient.user.name + ' ' + dClient.user.id)
+    
 #-----------------------------------
 if __name__ == '__main__':
     for extension in extensions:
